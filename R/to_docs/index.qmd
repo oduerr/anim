@@ -1,0 +1,17 @@
+---
+title: "index"
+format: 
+  html:
+    page-layout: full
+    embed-resources: true 
+    theme: [default, oliver_slides.scss]
+
+editor: visual
+toc: true
+---
+
+## Interactive Components
+
+Linear Regression 
+
+See [howto](howto) for tips.

@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "index",
+    "section": "",
+    "text": "Linear Regression\nSee howto for tips."
+  },
+  {
+    "objectID": "index.html#building-new-components",
+    "href": "index.html#building-new-components",
+    "title": "index",
+    "section": "Building new components",
+    "text": "Building new components"
+  },
+  {
+    "objectID": "lr.html#quarto",
+    "href": "lr.html#quarto",
+    "title": "lr",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "lr.html#bullets",
+    "href": "lr.html#bullets",
+    "title": "lr",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "lr.html#code",
+    "href": "lr.html#code",
+    "title": "lr",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+  },
+  {
+    "objectID": "howto.html",
+    "href": "howto.html",
+    "title": "Creating Components",
+    "section": "",
+    "text": "Components like scatterplot are build in observablehq.com/@oduerr"
+  },
+  {
+    "objectID": "howto.html#building-new-components",
+    "href": "howto.html#building-new-components",
+    "title": "index",
+    "section": "Building new components",
+    "text": "Building new components"
+  }
+]

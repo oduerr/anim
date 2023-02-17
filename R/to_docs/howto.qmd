@@ -1,0 +1,17 @@
+---
+title: "Creating Components"
+format: 
+  html:
+    page-layout: full
+    embed-resources: true 
+    theme: [default, oliver_slides.scss]
+
+editor: visual
+toc: true
+---
+
+## Overview
+
+-   Components like scatterplot are build in [observablehq.com/\@oduerr](https://observablehq.com/@oduerr)
+
+-   
