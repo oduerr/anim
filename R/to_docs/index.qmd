@@ -12,6 +12,12 @@ toc: true
 
 ## Interactive Components
 
-Linear Regression 
+### Linear Regression
+<https://oduerr.github.io/anim/lr#/data>
+```{=html}
+<iframe width="400" height="300" src="https://oduerr.github.io/anim/lr#/data" title="Quarto Documentation"></iframe>
+```
+
+### Maximum Likelihood
 
 See [howto](howto) for tips.

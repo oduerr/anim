@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "index",
     "section": "",
-    "text": "Linear Regression\nSee howto for tips."
+    "text": "https://oduerr.github.io/anim/lr#/data\n\n\n\n\nSee howto for tips."
   },
   {
     "objectID": "index.html#building-new-components",
@@ -103,5 +103,12 @@
     "title": "Linear Regression",
     "section": "",
     "text": "//Redoing the plot\nlr(800)\n\n\n\n\n\n\n\n\nInputs.bind(Inputs.range([-10, 120]),  b)\n\n\n\n\n\n\n\nInputs.bind(Inputs.range([-5, 5]),  w)\n\n\n\n\n\n\n\nhtml`<br>y = ${w} &middot; x + ${b}<br>`\n\n\n\n\n\n\n\nfunction color(value) {\n  return  d3.scaleLinear().domain([-1, 0, 1]).range(['blue', 'gray', 'green'])(value);\n}\nfunction lw(value) {\n  return d3.scaleLinear().domain([-1, 1]).range([0.1, 1])(value);\n}\n\ndot`${my_graph}`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmy_graph = `digraph {\n  node [fontsize=20, fontname=Arial];\n  node [fixedsize=true, width=0.6, height=0.6];\n  edge [arrowhead=vee, arrowsize=0.7];\n\n  //b -> Y[penwidth=${10*lw(Math.abs(b))}, label=${b}]; //<-- Change the factor here\n  b -> Y[penwidth=2, label=${b}];\n  x1 -> Y[penwidth=2, label=${w}];\n  \n  x1 [label=\"x\", pos=\"0,0\"]; \n  b  [label=\"1\", pos=\"0,2\"]; \n  Y  [label=\"y\", pos=\"1,0.8\"]; \n}`\n\n\n\n\n\n\n\n\n\n\nhttps://oduerr.github.io/anim/lr"
+  },
+  {
+    "objectID": "index.html#interactive-components-1",
+    "href": "index.html#interactive-components-1",
+    "title": "index",
+    "section": "Interactive Components",
+    "text": "Interactive Components\nSee howto for tips."
   }
 ]
