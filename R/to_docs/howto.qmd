@@ -10,8 +10,30 @@ editor: visual
 toc: true
 ---
 
-## Overview
+## Solution Embedd all code in notebooks
+
+* Important make self-contained
+
+
+## Solution all in ObservableHQ (not working)
+and only little adaptation 
 
 -   Components like scatterplot are build in [observablehq.com/\@oduerr](https://observablehq.com/@oduerr)
 
--   
+-   Adding Component Quarto Presentation
+
+```{ojs}
+  import {plot, b, w} from "https://observablehq.com/@oduerr/lr"
+  //import { plot as myplot} from "https://observablehq.com/@oduerr/lr"
+  plot()
+  b
+  w
+  Inputs.button([
+  ["Set to 0", () => set(viewof b, 0)],
+  ["Set to 100", () => set(viewof b, 120)]
+])
+```
+```{ojs}
+  html`<br>y = ${w} &middot; x + ${b}<br>`
+```
+

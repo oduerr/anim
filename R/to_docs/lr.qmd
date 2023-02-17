@@ -1,24 +1,114 @@
 ---
-title: "lr"
-format: revealjs
-editor: visual
+title: "Linear Regression"
+subtitle: "Using Observable"
+author: "Oliver"
+format:
+  revealjs:
+    page-layout: full
+    embed-resources: true 
+    theme: [default, oliver_slides.scss]
+    slide-number: true
+    #smaller: true  
+    scrollable: true
+    # Geht nicht zum html exportieren 
+    #chalkboard: 
+    #  buttons: false
+    preview-links: auto
+    controls-layout: edges
+    footer: <https://oduerr.github.io/anim/lr>
 ---
 
-## Quarto
+##  {#data data-menu-title="data"}
+```{R data_in_r}
+data = data.frame(matrix(ncol=2, nrow=33, c(22,131,41,139,52,128,23,128,41,171,54,105,24,116,46,137,56,145,27,106,47,111,57,141,28,114,48,115,58,153,9,123,49,133,59,157,30,117,49,128,63,155,32,122,50,183,67,176,33,99,51,130,71,172,35,121,51,133,77,178,40,147,51,144,81,217), byrow = TRUE))
+colnames(data) = c('x', 'y')
+ojs_define(dataT = data)
+```
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
 
-## Bullets
+```{ojs}
+data = transpose(dataT)
+function lr(pw){
+ return(
+  Plot.plot({
+  marks: [
+    Plot.dot(data, {x: "x", y: "y"}),
+    Plot.line(curve(data), {x: "x", y: "y"})
+  ],
+  y: {
+    label: "Blutdruck",
+    domain: [80,200]
+  },
+  x: {
+    label: "Alter",
+    domain: [15,80]
+  },
+  width: pw,
+  height: pw/1.5,
+  color: "steelblue"
+})
+)
+} 
 
-When you click the **Render** button a document will be generated that includes:
+function curve(template){
+  const ages = template.map(d => d.x);
+  const [minAge, maxAge] = d3.extent(ages);
+  const xvals = d3.range(minAge, maxAge, (maxAge - minAge) / 100); 
+  let yhat = xvals.map(x => w*x + b);
+  return xvals.map((x, i) => ({x, y: yhat[i]})); //Thanks ChatGPT
+}
 
--   Content authored with markdown
--   Output from executable code
+lr(900)
+```
 
-## Code
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+##  {#plotSliders}
 
-```{r}
-1 + 1
+```{ojs}
+//Redoing the plot
+lr(800)
+```
+
+```{ojs}
+//| panel: sidebar
+viewof b = Inputs.range([-10, 120], {label: "Intercept", step: 0.1})
+viewof w = Inputs.range([-5, 5], {label: "Slope", step: 0.1})
+html`<br>y = ${w} &middot; x + ${b}<br>`
+```
+
+##  {#plotSliders2}
+
+```{ojs}
+//Redoing the plot
+lr(800)
+```
+
+```{ojs}
+//| panel: sidebar
+
+Inputs.bind(Inputs.range([-10, 120]),  b)
+Inputs.bind(Inputs.range([-5, 5]),  w)
+html`<br>y = ${w} &middot; x + ${b}<br>`
+
+function color(value) {
+  return  d3.scaleLinear().domain([-1, 0, 1]).range(['blue', 'gray', 'green'])(value);
+}
+function lw(value) {
+  return d3.scaleLinear().domain([-1, 1]).range([0.1, 1])(value);
+}
+
+dot`${my_graph}`
+my_graph = `digraph {
+  node [fontsize=20, fontname=Arial];
+  node [fixedsize=true, width=0.6, height=0.6];
+  edge [arrowhead=vee, arrowsize=0.7];
+
+  //b -> Y[penwidth=${10*lw(Math.abs(b))}, label=${b}]; //<-- Change the factor here
+  b -> Y[penwidth=2, label=${b}];
+  x1 -> Y[penwidth=2, label=${w}];
+  
+  x1 [label="x", pos="0,0"]; 
+  b  [label="1", pos="0,2"]; 
+  Y  [label="y", pos="1,0.8"]; 
+}`
 ```
