@@ -13,11 +13,21 @@ toc: true
 ## Interactive Components
 
 ### Linear Regression
+
 <https://oduerr.github.io/anim/lr#/data>
+
 ```{=html}
 <iframe width="400" height="300" src="https://oduerr.github.io/anim/lr#/data" title="Quarto Documentation"></iframe>
 ```
-
 ### Maximum Likelihood
 
 See [howto](howto) for tips.
+
+## Confidence Intervalls
+
+```{r, echo=TRUE, eval=FALSE}
+library(animation)
+ani.options(interval = 0.1, nmax = 100)
+## 90% interval
+conf.int(0.9, main = "Demonstration of Confidence Intervals")
+```

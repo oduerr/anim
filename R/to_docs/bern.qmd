@@ -1,0 +1,68 @@
+---
+title: "Linear Regression"
+subtitle: "Using Observable"
+author: "Oliver"
+format:
+  revealjs:
+    #width: 1000
+    #height: 750
+    page-layout: full
+    embed-resources: true 
+    theme: [default, oliver_slides.scss]
+    slide-number: true
+    #smaller: true  
+    scrollable: true
+    # Geht nicht zum html exportieren 
+    #chalkboard: 
+    #  buttons: false
+    preview-links: auto
+    controls-layout: edges
+    footer: <https://oduerr.github.io/anim/lr>
+---
+
+## Hallo Gallo
+The Berstein Polynomials for degree $M=n$ are given by
+$$
+  {n \choose i} y^i (1-y)^{n-i} 
+$$
+```{r}
+library(tidyverse)
+bern = function(y, i, n){
+  return(
+    factorial(n)/(factorial(i)*factorial(n-i)) * y^i * (1-y)^(n-i)
+  )
+}
+ys = seq(0.01,0.99, length.out=100)
+
+df = data.frame(
+  y = ys,
+  M = 3,
+  i = 0,
+  bern = bern(ys, 0, 3)
+)
+df = rbind(df, data.frame(y=ys,M=3,i=1, bern = bern(ys,1,3)))
+df = rbind(df, data.frame(y=ys,M=3,i=2, bern = bern(ys,2,3)))
+df = rbind(df, data.frame(y=ys,M=3,i=3, bern = bern(ys,3,3)))
+ggplot(df) + 
+  geom_line(aes(x=y, y=bern, col=as.factor(i))) +
+  labs(color = "M=3, k=")
+
+```
+
+```{r}
+N = 100
+M = 5
+thetas = 0:M
+ys = seq(0.01,0.99, length.out=N)
+hs = rep(0,N)
+
+i = 0
+for (theta in thetas){
+  hs = hs + theta*bern(ys, i, M)
+  i = i+1
+}
+
+plot(ys, zs)
+```
+
+

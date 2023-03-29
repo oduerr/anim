@@ -4,6 +4,8 @@ subtitle: "Using Observable"
 author: "Oliver"
 format:
   revealjs:
+    #width: 1000
+    #height: 750
     page-layout: full
     embed-resources: true 
     theme: [default, oliver_slides.scss]
