@@ -7,3 +7,4 @@ docs/site_libs/*
 
 *.Rproj
 .DS_Store
+/R/to_docs/mcmc_mh_files/libs
