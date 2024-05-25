@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+docs/site_libs/*
+
+*.Rproj
+.DS_Store

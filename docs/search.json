@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "index",
+    "section": "",
+    "text": "https://oduerr.github.io/anim/lr#/data\n\n\n\n\nSee howto for tips."
+  },
+  {
+    "objectID": "index.html#building-new-components",
+    "href": "index.html#building-new-components",
+    "title": "index",
+    "section": "Building new components",
+    "text": "Building new components"
+  },
+  {
+    "objectID": "lr.html#quarto",
+    "href": "lr.html#quarto",
+    "title": "lr",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see https://quarto.org/docs/presentations/."
+  },
+  {
+    "objectID": "lr.html#bullets",
+    "href": "lr.html#bullets",
+    "title": "lr",
+    "section": "Bullets",
+    "text": "Bullets\nWhen you click the Render button a document will be generated that includes:\n\nContent authored with markdown\nOutput from executable code"
+  },
+  {
+    "objectID": "lr.html#code",
+    "href": "lr.html#code",
+    "title": "lr",
+    "section": "Code",
+    "text": "Code\nWhen you click the Render button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n\n[1] 2"
+  },
+  {
+    "objectID": "howto.html",
+    "href": "howto.html",
+    "title": "Creating Components",
+    "section": "",
+    "text": "Important make self-contained"
+  },
+  {
+    "objectID": "howto.html#building-new-components",
+    "href": "howto.html#building-new-components",
+    "title": "index",
+    "section": "Building new components",
+    "text": "Building new components"
+  },
+  {
+    "objectID": "lr.html#section",
+    "href": "lr.html#section",
+    "title": "",
+    "section": "..",
+    "text": "..\n\ndata = transpose(dataT)\nfunction lr(pw){\n return(\n  Plot.plot({\n  marks: [\n    Plot.dot(data, {x: \"x\", y: \"y\"}),\n    Plot.line(curve(data), {x: \"x\", y: \"y\"})\n  ],\n  y: {\n    label: \"Blutdruck\",\n    domain: [80,200]\n  },\n  x: {\n    label: \"Alter\",\n    domain: [15,80]\n  },\n  width: pw,\n  height: pw/1.5,\n  color: \"steelblue\"\n})\n)\n} \n\nfunction curve(template){\n  const ages = template.map(d => d.x);\n  const [minAge, maxAge] = d3.extent(ages);\n  const xvals = d3.range(minAge, maxAge, (maxAge - minAge) / 100); \n  let yhat = xvals.map(x => w*x + b);\n  return xvals.map((x, i) => ({x, y: yhat[i]})); //Thanks ChatGPT\n}\n\nlr(900)"
+  },
+  {
+    "objectID": "lr.html#section-1",
+    "href": "lr.html#section-1",
+    "title": "",
+    "section": "..",
+    "text": "..\n\ndata = transpose(dataT)\nfunction lr(pw){\n return(\n  Plot.plot({\n  marks: [\n    Plot.dot(data, {x: \"x\", y: \"y\"}),\n    Plot.line(curve(data), {x: \"x\", y: \"y\"})\n  ],\n  y: {\n    label: \"Blutdruck\",\n    domain: [80,200]\n  },\n  x: {\n    label: \"Alter\",\n    domain: [15,80]\n  },\n  width: pw,\n  height: pw/1.5,\n  color: \"steelblue\"\n})\n)\n} \n\nfunction curve(template){\n  const ages = template.map(d => d.x);\n  const [minAge, maxAge] = d3.extent(ages);\n  const xvals = d3.range(minAge, maxAge, (maxAge - minAge) / 100); \n  let yhat = xvals.map(x => w*x + b);\n  return xvals.map((x, i) => ({x, y: yhat[i]})); //Thanks ChatGPT\n}\n\nlr(900)"
+  },
+  {
+    "objectID": "lr.html#plot-with-sliders",
+    "href": "lr.html#plot-with-sliders",
+    "title": "",
+    "section": "Plot (With Sliders)",
+    "text": "Plot (With Sliders)\n\nlr(700)\n\n\n\n\n\n\n\nviewof b = Inputs.range([-10, 120], {label: \"Intercept\", step: 0.1})\nviewof w = Inputs.range([-5, 5], {label: \"Slope\", step: 0.1})\nhtml`<br>y = ${w} &middot; x + ${b}<br>`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://oduerr.github.io/anim/lr"
+  },
+  {
+    "objectID": "howto.html#solution-all-in-observablehq-not-working",
+    "href": "howto.html#solution-all-in-observablehq-not-working",
+    "title": "Creating Components",
+    "section": "Solution all in ObservableHQ (not working)",
+    "text": "Solution all in ObservableHQ (not working)\nand only little adaptation\n\nComponents like scatterplot are build in observablehq.com/@oduerr\nAdding Component Quarto Presentation\n\n\nimport {plot, b, w} from \"https://observablehq.com/@oduerr/lr\"\n  //import { plot as myplot} from \"https://observablehq.com/@oduerr/lr\"\n  plot()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nb\n\n\n\n\n\n\n\nw\n\n\n\n\n\n\n\nInputs.button([\n  [\"Set to 0\", () => set(viewof b, 0)],\n  [\"Set to 100\", () => set(viewof b, 120)]\n])\n\n\n\n\n\n\n\n\n\nhtml`<br>y = ${w} &middot; x + ${b}<br>`"
+  },
+  {
+    "objectID": "lr.html#data",
+    "href": "lr.html#data",
+    "title": "Linear Regression",
+    "section": "",
+    "text": "data = transpose(dataT)\nfunction lr(pw){\n return(\n  Plot.plot({\n  marks: [\n    Plot.dot(data, {x: \"x\", y: \"y\"}),\n    Plot.line(curve(data), {x: \"x\", y: \"y\"})\n  ],\n  y: {\n    label: \"Blutdruck\",\n    domain: [80,200]\n  },\n  x: {\n    label: \"Alter\",\n    domain: [15,80]\n  },\n  width: pw,\n  height: pw/1.5,\n  color: \"steelblue\"\n})\n)\n} \n\nfunction curve(template){\n  const ages = template.map(d => d.x);\n  const [minAge, maxAge] = d3.extent(ages);\n  const xvals = d3.range(minAge, maxAge, (maxAge - minAge) / 100); \n  let yhat = xvals.map(x => w*x + b);\n  return xvals.map((x, i) => ({x, y: yhat[i]})); //Thanks ChatGPT\n}\n\nlr(900)"
+  },
+  {
+    "objectID": "lr.html#plotwith-sliders-data-menu-titlewith-sliders",
+    "href": "lr.html#plotwith-sliders-data-menu-titlewith-sliders",
+    "title": "",
+    "section": "{#Plot(with sliders) data-menu-title=“with sliders”}",
+    "text": "{#Plot(with sliders) data-menu-title=“with sliders”}\n\n\n\n//Redoing the plot\nlr(700)\n\n\n\n\n\n\n\n\nviewof b = Inputs.range([-10, 120], {label: \"Intercept\", step: 0.1})\nviewof w = Inputs.range([-5, 5], {label: \"Slope\", step: 0.1})\nhtml`<br>y = ${w} &middot; x + ${b}<br>`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://oduerr.github.io/anim/lr"
+  },
+  {
+    "objectID": "lr.html#plotSliders",
+    "href": "lr.html#plotSliders",
+    "title": "Linear Regression",
+    "section": "",
+    "text": "//Redoing the plot\nlr(800)\n\n\n\n\n\n\n\n\nviewof b = Inputs.range([-10, 120], {label: \"Intercept\", step: 0.1})\nviewof w = Inputs.range([-5, 5], {label: \"Slope\", step: 0.1})\nhtml`<br>y = ${w} &middot; x + ${b}<br>`"
+  },
+  {
+    "objectID": "lr.html#plotSliders2",
+    "href": "lr.html#plotSliders2",
+    "title": "Linear Regression",
+    "section": "",
+    "text": "//Redoing the plot\nlr(800)\n\n\n\n\n\n\n\n\nInputs.bind(Inputs.range([-10, 120]),  b)\n\n\n\n\n\n\n\nInputs.bind(Inputs.range([-5, 5]),  w)\n\n\n\n\n\n\n\nhtml`<br>y = ${w} &middot; x + ${b}<br>`\n\n\n\n\n\n\n\nfunction color(value) {\n  return  d3.scaleLinear().domain([-1, 0, 1]).range(['blue', 'gray', 'green'])(value);\n}\nfunction lw(value) {\n  return d3.scaleLinear().domain([-1, 1]).range([0.1, 1])(value);\n}\n\ndot`${my_graph}`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmy_graph = `digraph {\n  node [fontsize=20, fontname=Arial];\n  node [fixedsize=true, width=0.6, height=0.6];\n  edge [arrowhead=vee, arrowsize=0.7];\n\n  //b -> Y[penwidth=${10*lw(Math.abs(b))}, label=${b}]; //<-- Change the factor here\n  b -> Y[penwidth=2, label=${b}];\n  x1 -> Y[penwidth=2, label=${w}];\n  \n  x1 [label=\"x\", pos=\"0,0\"]; \n  b  [label=\"1\", pos=\"0,2\"]; \n  Y  [label=\"y\", pos=\"1,0.8\"]; \n}`\n\n\n\n\n\n\n\n\n\n\nhttps://oduerr.github.io/anim/lr"
+  },
+  {
+    "objectID": "index.html#interactive-components-1",
+    "href": "index.html#interactive-components-1",
+    "title": "index",
+    "section": "Interactive Components",
+    "text": "Interactive Components\nSee howto for tips."
+  }
+]
