@@ -273,7 +273,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"options":{"fig-width":7,"read-only":"false","label":"unnamed-chunk-1","comment":"","editor-quick-suggestions":"false","output":"true","warning":"true","editor-max-height":"","message":"true","fig-cap":"","out-width":"700px","classes":"","editor-font-scale":1,"dpi":72,"out-height":"","context":"interactive","results":"markup","autorun":"false","fig-height":5},"code":"num_weeks <- 1e5\npositions <- rep(0, num_weeks)\ncurrent <- 10\nfor (i in 1:num_weeks) {\n  ## record current position\n  positions[i] <- current\n  ## flip coin to generate proposal\n  proposal <- current + sample(c(-1, 1), size = 1)\n  ## now make sure he loops around the archipelago\n  if (proposal < 1) proposal <- 10\n  if (proposal > 10) proposal <- 1\n  ## move?\n  prob_move <- proposal / current\n  current <- ifelse(runif(1) < prob_move, proposal, current)\n}\nplot(1:100, positions[1:100])\nplot(table(positions)/num_weeks, type = \"h\", xlab = \"Island\", ylab = \"Probability\")","id":1},{"options":{"fig-width":7,"read-only":"false","label":"unnamed-chunk-2","comment":"","editor-quick-suggestions":"false","output":"true","warning":"true","editor-max-height":"","message":"true","fig-cap":"","out-width":"700px","classes":"","editor-font-scale":1,"dpi":72,"out-height":"","context":"interactive","results":"markup","autorun":"false","fig-height":5},"code":"Steps = 10000\nplot_max = 500\nthetas = rep(NA, Steps)\n\n# Some target distribution (only up to a constant factor)\np = function(theta){\n  return (dexp(theta, rate=1/10)*42)\n}\n\ntheta = 60 #Initial value\nfor (t in 1:Steps) {\n  theta_star = rnorm(1, theta, 15)  # Propose a new value\n  A = min(1, p(theta_star)/p(theta)) #Acceptance probability\n  # Accept or reject the new value\n  if (runif(1) < A) { # Accept with probability A\n    thetas[t] = theta_star\n    theta = theta_star \n  } \n  thetas[t] = theta\n}\nplot(1:plot_max, thetas[1:plot_max], type = \"l\", xlab = \"Steps\", ylab = \"Theta\", main=\"Trace of the samples\")\nhist(thetas[200:Steps], main = \"Density of the samples\", freq=FALSE, 30)","id":2}];
+globalThis.qwebrCellDetails = [{"options":{"out-width":"700px","dpi":72,"fig-width":7,"out-height":"","context":"interactive","fig-cap":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","editor-font-scale":1,"read-only":"false","classes":"","results":"markup","message":"true","output":"true","fig-height":5,"editor-max-height":"","comment":"","label":"unnamed-chunk-1"},"code":"num_weeks <- 1e5\npositions <- rep(0, num_weeks)\ncurrent <- 10\nfor (i in 1:num_weeks) {\n  ## record current position\n  positions[i] <- current\n  ## flip coin to generate proposal\n  proposal <- current + sample(c(-1, 1), size = 1)\n  ## now make sure he loops around the archipelago\n  if (proposal < 1) proposal <- 10\n  if (proposal > 10) proposal <- 1\n  ## move?\n  prob_move <- proposal / current\n  current <- ifelse(runif(1) < prob_move, proposal, current)\n}\nplot(1:100, positions[1:100])\nplot(table(positions)/num_weeks, type = \"h\", xlab = \"Island\", ylab = \"Probability\")","id":1},{"options":{"out-width":"700px","dpi":72,"fig-width":7,"out-height":"","context":"interactive","fig-cap":"","autorun":"false","warning":"true","editor-quick-suggestions":"false","editor-font-scale":1,"read-only":"false","classes":"","results":"markup","message":"true","output":"true","fig-height":5,"editor-max-height":"","comment":"","label":"unnamed-chunk-2"},"code":"Steps = 10000\nplot_max = 500\nthetas = rep(NA, Steps)\n\n# Some target distribution (only up to a constant factor)\np = function(theta){\n  return (dexp(theta, rate=1/10)*42)\n}\n\ntheta = 60 #Initial value\nfor (t in 1:Steps) {\n  theta_star = rnorm(1, theta, 15)  # Propose a new value\n  A = min(1, p(theta_star)/p(theta)) #Acceptance probability\n  # Accept or reject the new value\n  if (runif(1) < A) { # Accept with probability A\n    thetas[t] = theta_star\n    theta = theta_star \n  } \n  thetas[t] = theta\n}\nplot(1:plot_max, thetas[1:plot_max], type = \"l\", xlab = \"Steps\", ylab = \"Theta\", main=\"Trace of the samples\")\nhist(thetas[200:Steps], main = \"Density of the samples\", freq=FALSE, 30)","id":2}];
 
 </script>
 <script type="module">
@@ -1121,7 +1121,7 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#metropolis-algorithm-king-of-the-archipelago" id="toc-metropolis-algorithm-king-of-the-archipelago" class="nav-link active" data-scroll-target="#metropolis-algorithm-king-of-the-archipelago">Metropolis Algorithm (King of the Archipelago)</a></li>
+  <li><a href="#metropolis-king-of-the-archipelago" id="toc-metropolis-king-of-the-archipelago" class="nav-link active" data-scroll-target="#metropolis-king-of-the-archipelago">Metropolis King of the Archipelago</a></li>
   <li><a href="#metropolis-algorithm-continuous-case" id="toc-metropolis-algorithm-continuous-case" class="nav-link" data-scroll-target="#metropolis-algorithm-continuous-case">Metropolis Algorithm (continuous case)</a></li>
   </ul>
 </nav>
@@ -1380,8 +1380,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<section id="metropolis-algorithm-king-of-the-archipelago" class="level2">
-<h2 class="anchored" data-anchor-id="metropolis-algorithm-king-of-the-archipelago">Metropolis Algorithm (King of the Archipelago)</h2>
+<section id="metropolis-king-of-the-archipelago" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="metropolis-king-of-the-archipelago">Metropolis King of the Archipelago</h2>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </section>
@@ -1865,13 +1865,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 8</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 4</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    mathjax: true</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="an">filters:</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - webr</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Metropolis Algorithm (King of the Archipelago)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Metropolis King of the Archipelago{.smaller}</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{webr-r}</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">num_weeks &lt;- 1e5</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">positions &lt;- rep(0, num_weeks)</span></span>
@@ -1892,8 +1892,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">plot(table(positions)/num_weeks, type = "h", xlab = "Island", ylab = "Probability")</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Metropolis Algorithm (continuous case)</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Metropolis Algorithm (continuous case)</span></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{webr-r}</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">Steps = 10000</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">plot_max = 500</span></span>

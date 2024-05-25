@@ -8,13 +8,13 @@ format:
     fig-width: 8
     fig-height: 4
     code-fold: true
-    code-tools: true 
+    code-tools: true
     mathjax: true
 filters:
   - webr
 ---
 
-##  Metropolis Algorithm (King of the Archipelago)
+##  Metropolis King of the Archipelago{.smaller}
 ```{webr-r}
 num_weeks <- 1e5
 positions <- rep(0, num_weeks)
@@ -35,8 +35,8 @@ plot(1:100, positions[1:100])
 plot(table(positions)/num_weeks, type = "h", xlab = "Island", ylab = "Probability")
 ```
 
-##  Metropolis Algorithm (continuous case)
 
+##  Metropolis Algorithm (continuous case)
 ```{webr-r}
 Steps = 10000
 plot_max = 500
