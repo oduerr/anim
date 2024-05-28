@@ -18,6 +18,7 @@ filters:
 ```{webr-r}
 num_weeks <- 1e5
 positions <- rep(0, num_weeks)
+s = 1:10 #Sizes of the islands in abitrary units
 current <- 10
 for (i in 1:num_weeks) {
   ## record current position
@@ -28,7 +29,7 @@ for (i in 1:num_weeks) {
   if (proposal < 1) proposal <- 10
   if (proposal > 10) proposal <- 1
   ## move?
-  prob_move <- proposal / current
+  prob_move <- s[proposal] / s[current]
   current <- ifelse(runif(1) < prob_move, proposal, current)
 }
 plot(1:100, positions[1:100])
