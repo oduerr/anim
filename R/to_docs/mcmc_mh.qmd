@@ -51,10 +51,9 @@ p = function(theta){
 theta = 60 #Initial value
 for (t in 1:Steps) {
   theta_star = rnorm(1, theta, 15)  # Propose a new value
-  A = min(1, p(theta_star)/p(theta)) #Acceptance probability
+  A = min(1, p(theta_star)/p(theta)) #Acceptance probability theta --> theta_star
   # Accept or reject the new value
   if (runif(1) < A) { # Accept with probability A
-    thetas[t] = theta_star
     theta = theta_star 
   } 
   thetas[t] = theta
